@@ -13,83 +13,84 @@ import java.sql.Timestamp;
  */
 public class Allocation {
     
-    private int allocationId;
-    private int memberId;
-    private int projectId;
-    private int roleId;
-    private Date fromDate;
-    private Date toDate;
+//    allocation_id INT PRIMARY KEY AUTO_INCREMENT,
+//    member_id INT,
+//    project_id INT,
+//    role_id INT,
+//    from_date DATE,
+//    to_date DATE,
+//    effort FLOAT,
+//    description TEXT,
+//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//    created_by_id INT,
+//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//    updated_by_id INT,
+//    FOREIGN KEY (member_id) REFERENCES user(user_id),
+//    FOREIGN KEY (project_id) REFERENCES project(project_id),
+//    FOREIGN KEY (role_id) REFERENCES project_roles(role_id)
+    
+    private int allocation_id;
+    private int member_id;
+    private int project_id;
+    private int role_id;
+    private Date from_date;
+    private Date to_date;
     private float effort;
     private String description;
-    private Timestamp createdAt;
-    private int createdById;
-    private Timestamp updatedAt;
-    private int updatedById;
+    private Timestamp created_at;
+    private int created_by_id;
+    private Timestamp updated_at;
+    private int updated_by_id;
 
     public Allocation() {
     }
 
-    public Allocation(int allocationId, int memberId, int projectId, int roleId, Date fromDate, Date toDate, float effort, String description, Timestamp createdAt, int createdById, Timestamp updatedAt, int updatedById) {
-        this.allocationId = allocationId;
-        this.memberId = memberId;
-        this.projectId = projectId;
-        this.roleId = roleId;
-        this.fromDate = fromDate;
-        this.toDate = toDate;
-        this.effort = effort;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.createdById = createdById;
-        this.updatedAt = updatedAt;
-        this.updatedById = updatedById;
+    public int getAllocation_id() {
+        return allocation_id;
     }
 
-    public int getAllocationId() {
-        return allocationId;
+    public void setAllocation_id(int allocation_id) {
+        this.allocation_id = allocation_id;
     }
 
-    public void setAllocationId(int allocationId) {
-        this.allocationId = allocationId;
+    public int getMember_id() {
+        return member_id;
     }
 
-    public int getMemberId() {
-        return memberId;
+    public void setMember_id(int member_id) {
+        this.member_id = member_id;
     }
 
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
+    public int getProject_id() {
+        return project_id;
     }
 
-    public int getProjectId() {
-        return projectId;
+    public void setProject_id(int project_id) {
+        this.project_id = project_id;
     }
 
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public int getRole_id() {
+        return role_id;
     }
 
-    public int getRoleId() {
-        return roleId;
+    public void setRole_id(int role_id) {
+        this.role_id = role_id;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public Date getFrom_date() {
+        return from_date;
     }
 
-    public Date getFromDate() {
-        return fromDate;
+    public void setFrom_date(Date from_date) {
+        this.from_date = from_date;
     }
 
-    public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
+    public Date getTo_date() {
+        return to_date;
     }
 
-    public Date getToDate() {
-        return toDate;
-    }
-
-    public void setToDate(Date toDate) {
-        this.toDate = toDate;
+    public void setTo_date(Date to_date) {
+        this.to_date = to_date;
     }
 
     public float getEffort() {
@@ -108,44 +109,42 @@ public class Allocation {
         this.description = description;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
-    public int getCreatedById() {
-        return createdById;
+    public int getCreated_by_id() {
+        return created_by_id;
     }
 
-    public void setCreatedById(int createdById) {
-        this.createdById = createdById;
+    public void setCreated_by_id(int created_by_id) {
+        this.created_by_id = created_by_id;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public int getUpdatedById() {
-        return updatedById;
+    public int getUpdated_by_id() {
+        return updated_by_id;
     }
 
-    public void setUpdatedById(int updatedById) {
-        this.updatedById = updatedById;
+    public void setUpdated_by_id(int updated_by_id) {
+        this.updated_by_id = updated_by_id;
     }
 
     @Override
     public String toString() {
-        return "Allocation{" + "allocationId=" + allocationId + ", memberId=" + memberId + ", projectId=" + projectId + ", roleId=" + roleId + ", fromDate=" + fromDate + ", toDate=" + toDate + ", effort=" + effort + ", description=" + description + ", createdAt=" + createdAt + ", createdById=" + createdById + ", updatedAt=" + updatedAt + ", updatedById=" + updatedById + '}';
+        return "Allocation{" + "allocation_id=" + allocation_id + ", member_id=" + member_id + ", project_id=" + project_id + ", role_id=" + role_id + ", from_date=" + from_date + ", to_date=" + to_date + ", effort=" + effort + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
-    
-    
-    
-    
+
+   
 }

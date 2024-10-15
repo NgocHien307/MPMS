@@ -13,47 +13,49 @@ import java.sql.Timestamp;
  */
 public class Issue {
     
-    private int issueId;
+//    issue_id INT PRIMARY KEY AUTO_INCREMENT,
+//    title VARCHAR(255) NOT NULL,
+//    type_id INT,
+//    req_id INT,
+//    assigner_id INT,
+//    assignee_id INT,
+//    deadline DATE,
+//    status ENUM('pending', 'to do', 'doing', 'done', 'closed') DEFAULT 'pending',
+//    status_date TIMESTAMP,
+//    description TEXT,
+//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//    created_by_id INT,
+//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//    updated_by_id INT,
+//    FOREIGN KEY (type_id) REFERENCES issue_types(type_id),
+//    FOREIGN KEY (req_id) REFERENCES requirement(req_id),
+//    FOREIGN KEY (assigner_id) REFERENCES user(user_id),
+//    FOREIGN KEY (assignee_id) REFERENCES user(user_id)
+    
+    private int issue_id;
     private String title;
-    private int typeId;
-    private int reqId;
-    private int assignerId;
-    private int assigneeId;
+    private int type_id;
+    private int req_id;
+    private int assigner_id;
+    private int assignee_id;
     private Date deadline;
     private String status;
-    private Timestamp statusDate;
+    private Timestamp status_date;
     private String description;
-    private Timestamp createdAt;
-    private int createdById;
-    private Timestamp updatedAt;
-    private int updatedById;
+    private Timestamp created_at;
+    private int created_by_id;
+    private Timestamp updated_at;
+    private int updated_by_id;
 
     public Issue() {
     }
 
-    public Issue(int issueId, String title, int typeId, int reqId, int assignerId, int assigneeId, Date deadline, String status, Timestamp statusDate, String description, Timestamp createdAt, int createdById, Timestamp updatedAt, int updatedById) {
-        this.issueId = issueId;
-        this.title = title;
-        this.typeId = typeId;
-        this.reqId = reqId;
-        this.assignerId = assignerId;
-        this.assigneeId = assigneeId;
-        this.deadline = deadline;
-        this.status = status;
-        this.statusDate = statusDate;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.createdById = createdById;
-        this.updatedAt = updatedAt;
-        this.updatedById = updatedById;
+    public int getIssue_id() {
+        return issue_id;
     }
 
-    public int getIssueId() {
-        return issueId;
-    }
-
-    public void setIssueId(int issueId) {
-        this.issueId = issueId;
+    public void setIssue_id(int issue_id) {
+        this.issue_id = issue_id;
     }
 
     public String getTitle() {
@@ -64,36 +66,36 @@ public class Issue {
         this.title = title;
     }
 
-    public int getTypeId() {
-        return typeId;
+    public int getType_id() {
+        return type_id;
     }
 
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
+    public void setType_id(int type_id) {
+        this.type_id = type_id;
     }
 
-    public int getReqId() {
-        return reqId;
+    public int getReq_id() {
+        return req_id;
     }
 
-    public void setReqId(int reqId) {
-        this.reqId = reqId;
+    public void setReq_id(int req_id) {
+        this.req_id = req_id;
     }
 
-    public int getAssignerId() {
-        return assignerId;
+    public int getAssigner_id() {
+        return assigner_id;
     }
 
-    public void setAssignerId(int assignerId) {
-        this.assignerId = assignerId;
+    public void setAssigner_id(int assigner_id) {
+        this.assigner_id = assigner_id;
     }
 
-    public int getAssigneeId() {
-        return assigneeId;
+    public int getAssignee_id() {
+        return assignee_id;
     }
 
-    public void setAssigneeId(int assigneeId) {
-        this.assigneeId = assigneeId;
+    public void setAssignee_id(int assignee_id) {
+        this.assignee_id = assignee_id;
     }
 
     public Date getDeadline() {
@@ -112,12 +114,12 @@ public class Issue {
         this.status = status;
     }
 
-    public Timestamp getStatusDate() {
-        return statusDate;
+    public Timestamp getStatus_date() {
+        return status_date;
     }
 
-    public void setStatusDate(Timestamp statusDate) {
-        this.statusDate = statusDate;
+    public void setStatus_date(Timestamp status_date) {
+        this.status_date = status_date;
     }
 
     public String getDescription() {
@@ -128,44 +130,41 @@ public class Issue {
         this.description = description;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
-    public int getCreatedById() {
-        return createdById;
+    public int getCreated_by_id() {
+        return created_by_id;
     }
 
-    public void setCreatedById(int createdById) {
-        this.createdById = createdById;
+    public void setCreated_by_id(int created_by_id) {
+        this.created_by_id = created_by_id;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public int getUpdatedById() {
-        return updatedById;
+    public int getUpdated_by_id() {
+        return updated_by_id;
     }
 
-    public void setUpdatedById(int updatedById) {
-        this.updatedById = updatedById;
+    public void setUpdated_by_id(int updated_by_id) {
+        this.updated_by_id = updated_by_id;
     }
 
     @Override
     public String toString() {
-        return "Issue{" + "issueId=" + issueId + ", title=" + title + ", typeId=" + typeId + ", reqId=" + reqId + ", assignerId=" + assignerId + ", assigneeId=" + assigneeId + ", deadline=" + deadline + ", status=" + status + ", statusDate=" + statusDate + ", description=" + description + ", createdAt=" + createdAt + ", createdById=" + createdById + ", updatedAt=" + updatedAt + ", updatedById=" + updatedById + '}';
+        return "Issue{" + "issue_id=" + issue_id + ", title=" + title + ", type_id=" + type_id + ", req_id=" + req_id + ", assigner_id=" + assigner_id + ", assignee_id=" + assignee_id + ", deadline=" + deadline + ", status=" + status + ", status_date=" + status_date + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
-    
-    
-    
-    
+      
 }

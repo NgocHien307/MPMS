@@ -46,7 +46,10 @@ public class DBConnect {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         // Establish the connection
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/project_management", "root", "12345678");
+        String url = "jdbc:mysql://localhost:3306/project_management";
+        String user = "root";
+        String password = "12345678";
+        return DriverManager.getConnection(url, user, password);
     }
 
     // Function to fetch a User object based on the username

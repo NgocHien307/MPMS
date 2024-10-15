@@ -12,41 +12,31 @@ import java.sql.Timestamp;
  */
 public class IssueType {
     
-    private int typeId;
-    private String typeName;
+    private int type_id;
+    private String type_name;
     private String description;
-    private Timestamp createdAt;
-    private int createdById;
-    private Timestamp updatedAt;
-    private int updatedById;
+    private Timestamp created_at;
+    private int created_by_id;
+    private Timestamp updated_at;
+    private int updated_by_id;
 
     public IssueType() {
     }
 
-    public IssueType(int typeId, String typeName, String description, Timestamp createdAt, int createdById, Timestamp updatedAt, int updatedById) {
-        this.typeId = typeId;
-        this.typeName = typeName;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.createdById = createdById;
-        this.updatedAt = updatedAt;
-        this.updatedById = updatedById;
+    public int getType_id() {
+        return type_id;
     }
 
-    public int getTypeId() {
-        return typeId;
+    public void setType_id(int type_id) {
+        this.type_id = type_id;
     }
 
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
+    public String getType_name() {
+        return type_name;
     }
 
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+    public void setType_name(String type_name) {
+        this.type_name = type_name;
     }
 
     public String getDescription() {
@@ -57,44 +47,42 @@ public class IssueType {
         this.description = description;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
-    public int getCreatedById() {
-        return createdById;
+    public int getCreated_by_id() {
+        return created_by_id;
     }
 
-    public void setCreatedById(int createdById) {
-        this.createdById = createdById;
+    public void setCreated_by_id(int created_by_id) {
+        this.created_by_id = created_by_id;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public int getUpdatedById() {
-        return updatedById;
+    public int getUpdated_by_id() {
+        return updated_by_id;
     }
 
-    public void setUpdatedById(int updatedById) {
-        this.updatedById = updatedById;
+    public void setUpdated_by_id(int updated_by_id) {
+        this.updated_by_id = updated_by_id;
     }
 
     @Override
     public String toString() {
-        return "IssueType{" + "typeId=" + typeId + ", typeName=" + typeName + ", description=" + description + ", createdAt=" + createdAt + ", createdById=" + createdById + ", updatedAt=" + updatedAt + ", updatedById=" + updatedById + '}';
+        return "IssueType{" + "type_id=" + type_id + ", type_name=" + type_name + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
-    
-    
-    
+
     
 }

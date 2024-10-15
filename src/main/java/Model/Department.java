@@ -12,41 +12,39 @@ import java.sql.Timestamp;
  */
 public class Department {
     
-    private int deptId;
-    private String deptName;
+//    dept_id INT PRIMARY KEY AUTO_INCREMENT,
+//    dept_name VARCHAR(100) NOT NULL,
+//    description TEXT,
+//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//    created_by_id INT,
+//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//    updated_by_id INT
+    
+    private int dept_id;
+    private String dept_name;
     private String description;
-    private Timestamp createdAt;
-    private int createdById;
-    private Timestamp updatedAt;
-    private int updatedById;
+    private Timestamp created_at;
+    private int created_by_id;
+    private Timestamp updated_at;
+    private int updated_by_id;
 
     public Department() {
     }
 
-    public Department(int deptId, String deptName, String description, Timestamp createdAt, int createdById, Timestamp updatedAt, int updatedById) {
-        this.deptId = deptId;
-        this.deptName = deptName;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.createdById = createdById;
-        this.updatedAt = updatedAt;
-        this.updatedById = updatedById;
+    public int getDept_id() {
+        return dept_id;
     }
 
-    public int getDeptId() {
-        return deptId;
+    public void setDept_id(int dept_id) {
+        this.dept_id = dept_id;
     }
 
-    public void setDeptId(int deptId) {
-        this.deptId = deptId;
+    public String getDept_name() {
+        return dept_name;
     }
 
-    public String getDeptName() {
-        return deptName;
-    }
-
-    public void setDeptName(String deptName) {
-        this.deptName = deptName;
+    public void setDept_name(String dept_name) {
+        this.dept_name = dept_name;
     }
 
     public String getDescription() {
@@ -57,43 +55,42 @@ public class Department {
         this.description = description;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
-    public int getCreatedById() {
-        return createdById;
+    public int getCreated_by_id() {
+        return created_by_id;
     }
 
-    public void setCreatedById(int createdById) {
-        this.createdById = createdById;
+    public void setCreated_by_id(int created_by_id) {
+        this.created_by_id = created_by_id;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public int getUpdatedById() {
-        return updatedById;
+    public int getUpdated_by_id() {
+        return updated_by_id;
     }
 
-    public void setUpdatedById(int updatedById) {
-        this.updatedById = updatedById;
+    public void setUpdated_by_id(int updated_by_id) {
+        this.updated_by_id = updated_by_id;
     }
 
     @Override
     public String toString() {
-        return "Department{" + "deptId=" + deptId + ", deptName=" + deptName + ", description=" + description + ", createdAt=" + createdAt + ", createdById=" + createdById + ", updatedAt=" + updatedAt + ", updatedById=" + updatedById + '}';
+        return "Department{" + "dept_id=" + dept_id + ", dept_name=" + dept_name + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
-    
-    
+
     
 }

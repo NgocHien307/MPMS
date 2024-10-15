@@ -12,41 +12,39 @@ import java.sql.Timestamp;
  */
 public class RequirementComplexity {
     
-    private int complexityId;
-    private String complexityName;
+//     complexity_id INT PRIMARY KEY AUTO_INCREMENT,
+//    complexity_name VARCHAR(50) NOT NULL,
+//    description TEXT,
+//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//    created_by_id INT,
+//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//    updated_by_id INT  
+    
+    private int complexity_id;
+    private String complexity_name;
     private String description;
-    private Timestamp createdAt;
-    private int createdById;
-    private Timestamp updatedAt;
-    private int updatedById;
+    private Timestamp created_at;
+    private int created_by_id;
+    private Timestamp updated_at;
+    private int updated_by_id;
 
     public RequirementComplexity() {
     }
 
-    public RequirementComplexity(int complexityId, String complexityName, String description, Timestamp createdAt, int createdById, Timestamp updatedAt, int updatedById) {
-        this.complexityId = complexityId;
-        this.complexityName = complexityName;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.createdById = createdById;
-        this.updatedAt = updatedAt;
-        this.updatedById = updatedById;
+    public int getComplexity_id() {
+        return complexity_id;
     }
 
-    public int getComplexityId() {
-        return complexityId;
+    public void setComplexity_id(int complexity_id) {
+        this.complexity_id = complexity_id;
     }
 
-    public void setComplexityId(int complexityId) {
-        this.complexityId = complexityId;
+    public String getComplexity_name() {
+        return complexity_name;
     }
 
-    public String getComplexityName() {
-        return complexityName;
-    }
-
-    public void setComplexityName(String complexityName) {
-        this.complexityName = complexityName;
+    public void setComplexity_name(String complexity_name) {
+        this.complexity_name = complexity_name;
     }
 
     public String getDescription() {
@@ -57,44 +55,41 @@ public class RequirementComplexity {
         this.description = description;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
-    public int getCreatedById() {
-        return createdById;
+    public int getCreated_by_id() {
+        return created_by_id;
     }
 
-    public void setCreatedById(int createdById) {
-        this.createdById = createdById;
+    public void setCreated_by_id(int created_by_id) {
+        this.created_by_id = created_by_id;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public int getUpdatedById() {
-        return updatedById;
+    public int getUpdated_by_id() {
+        return updated_by_id;
     }
 
-    public void setUpdatedById(int updatedById) {
-        this.updatedById = updatedById;
+    public void setUpdated_by_id(int updated_by_id) {
+        this.updated_by_id = updated_by_id;
     }
 
     @Override
     public String toString() {
-        return "RequirementComplexity{" + "complexityId=" + complexityId + ", complexityName=" + complexityName + ", description=" + description + ", createdAt=" + createdAt + ", createdById=" + createdById + ", updatedAt=" + updatedAt + ", updatedById=" + updatedById + '}';
+        return "RequirementComplexity{" + "complexity_id=" + complexity_id + ", complexity_name=" + complexity_name + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
-    
-    
-    
     
 }

@@ -13,43 +13,42 @@ import java.sql.Timestamp;
  */
 public class Project {
     
-    private int projectId;
+//     project_id INT PRIMARY KEY AUTO_INCREMENT,
+//    name VARCHAR(255) NOT NULL,
+//    code VARCHAR(50) NOT NULL UNIQUE,
+//    start_date DATE,
+//    end_date DATE,
+//    dept_id INT,
+//    status ENUM('pending', 'in-progress', 'closed', 'cancelled') DEFAULT 'pending',
+//    description TEXT,
+//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//    created_by_id INT,
+//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//    updated_by_id INT,
+//    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+    
+    private int project_id;
     private String name;
     private String code;
-    private Date startDate;
-    private Date endDate;
-    private int deptId;
+    private Date start_date;
+    private Date end_date;
+    private int dept_id;
     private String status;
     private String description;
-    private Timestamp createdAt;
-    private int createdById;
-    private Timestamp updatedAt;
-    private int updatedById;
+    private Timestamp created_at;
+    private int created_by_id;
+    private Timestamp updated_at;
+    private int updated_by_id;
 
     public Project() {
     }
 
-    public Project(int projectId, String name, String code, Date startDate, Date endDate, int deptId, String status, String description, Timestamp createdAt, int createdById, Timestamp updatedAt, int updatedById) {
-        this.projectId = projectId;
-        this.name = name;
-        this.code = code;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.deptId = deptId;
-        this.status = status;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.createdById = createdById;
-        this.updatedAt = updatedAt;
-        this.updatedById = updatedById;
+    public int getProject_id() {
+        return project_id;
     }
 
-    public int getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public void setProject_id(int project_id) {
+        this.project_id = project_id;
     }
 
     public String getName() {
@@ -68,28 +67,28 @@ public class Project {
         this.code = code;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getStart_date() {
+        return start_date;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public Date getEnd_date() {
+        return end_date;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
     }
 
-    public int getDeptId() {
-        return deptId;
+    public int getDept_id() {
+        return dept_id;
     }
 
-    public void setDeptId(int deptId) {
-        this.deptId = deptId;
+    public void setDept_id(int dept_id) {
+        this.dept_id = dept_id;
     }
 
     public String getStatus() {
@@ -108,44 +107,43 @@ public class Project {
         this.description = description;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
-    public int getCreatedById() {
-        return createdById;
+    public int getCreated_by_id() {
+        return created_by_id;
     }
 
-    public void setCreatedById(int createdById) {
-        this.createdById = createdById;
+    public void setCreated_by_id(int created_by_id) {
+        this.created_by_id = created_by_id;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public int getUpdatedById() {
-        return updatedById;
+    public int getUpdated_by_id() {
+        return updated_by_id;
     }
 
-    public void setUpdatedById(int updatedById) {
-        this.updatedById = updatedById;
+    public void setUpdated_by_id(int updated_by_id) {
+        this.updated_by_id = updated_by_id;
     }
 
     @Override
-    public String toString() {  
-        return "Project{" + "projectId=" + projectId + ", name=" + name + ", code=" + code + ", startDate=" + startDate + ", endDate=" + endDate + ", deptId=" + deptId + ", status=" + status + ", description=" + description + ", createdAt=" + createdAt + ", createdById=" + createdById + ", updatedAt=" + updatedAt + ", updatedById=" + updatedById + '}';
+    public String toString() {
+        return "Project{" + "project_id=" + project_id + ", name=" + name + ", code=" + code + ", start_date=" + start_date + ", end_date=" + end_date + ", dept_id=" + dept_id + ", status=" + status + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
-    
-    
+
     
     
 }

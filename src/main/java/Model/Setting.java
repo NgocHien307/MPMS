@@ -11,42 +11,55 @@ import java.sql.Timestamp;
  * @author hient
  */
 public class Setting {
-    
-    private int settingId;
+
+//    setting_id INT PRIMARY KEY AUTO_INCREMENT,
+//    name VARCHAR(255) NOT NULL,
+//    value TEXT,
+//    type_id INT,
+//    priority INT,
+//    status ENUM('active', 'inactive') DEFAULT 'active',
+//    description TEXT,
+//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//    created_by_id INT,
+//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//    updated_by_id INT
+
+    private int setting_id;
     private String name;
     private String value;
-    private int typeId;
+    private int type_id;
     private int priority;
     private String status;
     private String description;
-    private Timestamp createdAt;
-    private int createdById;
-    private Timestamp updatedAt;
-    private int updatedById;
+    private Timestamp created_at;
+    private int created_by_id;
+    private Timestamp updated_at;
+    private int updated_by_id;
+
 
     public Setting() {
     }
 
-    public Setting(int settingId, String name, String value, int typeId, int priority, String status, String description, Timestamp createdAt, int createdById, Timestamp updatedAt, int updatedById) {
-        this.settingId = settingId;
+    public Setting(int setting_id, String name, String value, int type_id, int priority, String status, String description, Timestamp created_at, int created_by_id, Timestamp updated_at, int updated_by_id) {
+        this.setting_id = setting_id;
         this.name = name;
         this.value = value;
-        this.typeId = typeId;
+        this.type_id = type_id;
         this.priority = priority;
         this.status = status;
         this.description = description;
-        this.createdAt = createdAt;
-        this.createdById = createdById;
-        this.updatedAt = updatedAt;
-        this.updatedById = updatedById;
+        this.created_at = created_at;
+        this.created_by_id = created_by_id;
+        this.updated_at = updated_at;
+        this.updated_by_id = updated_by_id;
     }
 
-    public int getSettingId() {
-        return settingId;
+    public int getSetting_id() {
+        return setting_id;
     }
 
-    public void setSettingId(int settingId) {
-        this.settingId = settingId;
+    public void setSetting_id(int setting_id) {
+        this.setting_id = setting_id;
     }
 
     public String getName() {
@@ -65,12 +78,12 @@ public class Setting {
         this.value = value;
     }
 
-    public int getTypeId() {
-        return typeId;
+    public int getType_id() {
+        return type_id;
     }
 
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
+    public void setType_id(int type_id) {
+        this.type_id = type_id;
     }
 
     public int getPriority() {
@@ -97,43 +110,40 @@ public class Setting {
         this.description = description;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
-    public int getCreatedById() {
-        return createdById;
+    public int getCreated_by_id() {
+        return created_by_id;
     }
 
-    public void setCreatedById(int createdById) {
-        this.createdById = createdById;
+    public void setCreated_by_id(int created_by_id) {
+        this.created_by_id = created_by_id;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public int getUpdatedById() {
-        return updatedById;
+    public int getUpdated_by_id() {
+        return updated_by_id;
     }
 
-    public void setUpdatedById(int updatedById) {
-        this.updatedById = updatedById;
+    public void setUpdated_by_id(int updated_by_id) {
+        this.updated_by_id = updated_by_id;
     }
 
     @Override
     public String toString() {
-        return "Setting{" + "settingId=" + settingId + ", name=" + name + ", value=" + value + ", typeId=" + typeId + ", priority=" + priority + ", status=" + status + ", description=" + description + ", createdAt=" + createdAt + ", createdById=" + createdById + ", updatedAt=" + updatedAt + ", updatedById=" + updatedById + '}';
+        return "Setting{" + "setting_id=" + setting_id + ", name=" + name + ", value=" + value + ", type_id=" + type_id + ", priority=" + priority + ", status=" + status + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
-    
-    
-    
 }

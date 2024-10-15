@@ -12,41 +12,39 @@ import java.sql.Timestamp;
  */
 public class RequirementStatus {
     
-    private int statusId;
-    private String statusName;
+//    status_id INT PRIMARY KEY AUTO_INCREMENT,
+//    status_name VARCHAR(50) NOT NULL,
+//    description TEXT,
+//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//    created_by_id INT,
+//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//    updated_by_id INT
+    
+    private int status_id;
+    private String status_name;
     private String description;
-    private Timestamp createdAt;
-    private int createdById;
-    private Timestamp updatedAt;
-    private int updatedById;
+    private Timestamp created_at;
+    private int created_by_id;
+    private Timestamp updated_at;
+    private int updated_by_id;
 
     public RequirementStatus() {
     }
 
-    public RequirementStatus(int statusId, String statusName, String description, Timestamp createdAt, int createdById, Timestamp updatedAt, int updatedById) {
-        this.statusId = statusId;
-        this.statusName = statusName;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.createdById = createdById;
-        this.updatedAt = updatedAt;
-        this.updatedById = updatedById;
+    public int getStatus_id() {
+        return status_id;
     }
 
-    public int getStatusId() {
-        return statusId;
+    public void setStatus_id(int status_id) {
+        this.status_id = status_id;
     }
 
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
+    public String getStatus_name() {
+        return status_name;
     }
 
-    public String getStatusName() {
-        return statusName;
-    }
-
-    public void setStatusName(String statusName) {
-        this.statusName = statusName;
+    public void setStatus_name(String status_name) {
+        this.status_name = status_name;
     }
 
     public String getDescription() {
@@ -57,43 +55,44 @@ public class RequirementStatus {
         this.description = description;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
-    public int getCreatedById() {
-        return createdById;
+    public int getCreated_by_id() {
+        return created_by_id;
     }
 
-    public void setCreatedById(int createdById) {
-        this.createdById = createdById;
+    public void setCreated_by_id(int created_by_id) {
+        this.created_by_id = created_by_id;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public int getUpdatedById() {
-        return updatedById;
+    public int getUpdated_by_id() {
+        return updated_by_id;
     }
 
-    public void setUpdatedById(int updatedById) {
-        this.updatedById = updatedById;
+    public void setUpdated_by_id(int updated_by_id) {
+        this.updated_by_id = updated_by_id;
     }
 
     @Override
     public String toString() {
-        return "RequirementStatus{" + "statusId=" + statusId + ", statusName=" + statusName + ", description=" + description + ", createdAt=" + createdAt + ", createdById=" + createdById + ", updatedAt=" + updatedAt + ", updatedById=" + updatedById + '}';
+        return "RequirementStatus{" + "status_id=" + status_id + ", status_name=" + status_name + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
-    
+
+  
     
     
 }

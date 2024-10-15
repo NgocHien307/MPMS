@@ -12,39 +12,40 @@ import java.sql.Timestamp;
  */
 public class Requirement {
     
-    private int reqId;
+//     req_id INT PRIMARY KEY AUTO_INCREMENT,
+//    title VARCHAR(255) NOT NULL,
+//    owner_id INT,
+//    complexity_id INT,
+//    status_id INT,
+//    description TEXT,
+//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//    created_by_id INT,
+//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//    updated_by_id INT,
+//    FOREIGN KEY (owner_id) REFERENCES user(user_id),
+//    FOREIGN KEY (complexity_id) REFERENCES requirement_complexity(complexity_id),
+//    FOREIGN KEY (status_id) REFERENCES requirement_status(status_id)
+    
+    private int req_id;
     private String title;
-    private int ownerId;
-    private int complexityId;
-    private int statusId;
+    private int owner_id;
+    private int complexity_id;
+    private int status_id;
     private String description;
-    private Timestamp createdAt;
-    private int createdById;
-    private Timestamp updatedAt;
-    private int updatedById;
+    private Timestamp created_at;
+    private int created_by_id;
+    private Timestamp updated_at;
+    private int updated_by_id;
 
     public Requirement() {
     }
 
-    public Requirement(int reqId, String title, int ownerId, int complexityId, int statusId, String description, Timestamp createdAt, int createdById, Timestamp updatedAt, int updatedById) {
-        this.reqId = reqId;
-        this.title = title;
-        this.ownerId = ownerId;
-        this.complexityId = complexityId;
-        this.statusId = statusId;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.createdById = createdById;
-        this.updatedAt = updatedAt;
-        this.updatedById = updatedById;
+    public int getReq_id() {
+        return req_id;
     }
 
-    public int getReqId() {
-        return reqId;
-    }
-
-    public void setReqId(int reqId) {
-        this.reqId = reqId;
+    public void setReq_id(int req_id) {
+        this.req_id = req_id;
     }
 
     public String getTitle() {
@@ -55,28 +56,28 @@ public class Requirement {
         this.title = title;
     }
 
-    public int getOwnerId() {
-        return ownerId;
+    public int getOwner_id() {
+        return owner_id;
     }
 
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
+    public void setOwner_id(int owner_id) {
+        this.owner_id = owner_id;
     }
 
-    public int getComplexityId() {
-        return complexityId;
+    public int getComplexity_id() {
+        return complexity_id;
     }
 
-    public void setComplexityId(int complexityId) {
-        this.complexityId = complexityId;
+    public void setComplexity_id(int complexity_id) {
+        this.complexity_id = complexity_id;
     }
 
-    public int getStatusId() {
-        return statusId;
+    public int getStatus_id() {
+        return status_id;
     }
 
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
+    public void setStatus_id(int status_id) {
+        this.status_id = status_id;
     }
 
     public String getDescription() {
@@ -87,45 +88,44 @@ public class Requirement {
         this.description = description;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Timestamp getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
-    public int getCreatedById() {
-        return createdById;
+    public int getCreated_by_id() {
+        return created_by_id;
     }
 
-    public void setCreatedById(int createdById) {
-        this.createdById = createdById;
+    public void setCreated_by_id(int created_by_id) {
+        this.created_by_id = created_by_id;
     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public int getUpdatedById() {
-        return updatedById;
+    public int getUpdated_by_id() {
+        return updated_by_id;
     }
 
-    public void setUpdatedById(int updatedById) {
-        this.updatedById = updatedById;
+    public void setUpdated_by_id(int updated_by_id) {
+        this.updated_by_id = updated_by_id;
     }
 
     @Override
     public String toString() {
-        return "Requirement{" + "reqId=" + reqId + ", title=" + title + ", ownerId=" + ownerId + ", complexityId=" + complexityId + ", statusId=" + statusId + ", description=" + description + ", createdAt=" + createdAt + ", createdById=" + createdById + ", updatedAt=" + updatedAt + ", updatedById=" + updatedById + '}';
+        return "Requirement{" + "req_id=" + req_id + ", title=" + title + ", owner_id=" + owner_id + ", complexity_id=" + complexity_id + ", status_id=" + status_id + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
     
     
-    
-    
-    
+
+ 
 }
