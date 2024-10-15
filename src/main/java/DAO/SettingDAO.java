@@ -23,7 +23,7 @@ public class SettingDAO {
                 setting.setSetting_id(rs.getInt("setting_id"));
                 setting.setName(rs.getString("name"));
                 setting.setValue(rs.getString("value"));
-                setting.setType_id(rs.getInt("type_id"));
+                setting.setType(rs.getInt("type"));
                 setting.setPriority(rs.getInt("priority"));
                 setting.setStatus(rs.getString("status"));
                 setting.setDescription(rs.getString("description"));
@@ -53,7 +53,7 @@ public class SettingDAO {
                 setting.setSetting_id(rs.getInt("setting_id"));
                 setting.setName(rs.getString("name"));
                 setting.setValue(rs.getString("value"));
-                setting.setType_id(rs.getInt("type_id"));
+                setting.setType(rs.getInt("type"));
                 setting.setPriority(rs.getInt("priority"));
                 setting.setStatus(rs.getString("status"));
                 setting.setDescription(rs.getString("description"));
@@ -77,7 +77,7 @@ public class SettingDAO {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, setting.getName());
             ps.setString(2, setting.getValue());
-            ps.setInt(3, setting.getType_id());
+            ps.setInt(3, setting.getType());
             ps.setInt(4, setting.getPriority());
             ps.setString(5, setting.getStatus());
             ps.setString(6, setting.getDescription());
@@ -100,7 +100,7 @@ public class SettingDAO {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, setting.getName());
             ps.setString(2, setting.getValue());
-            ps.setInt(3, setting.getType_id());
+            ps.setInt(3, setting.getType());
             ps.setInt(4, setting.getPriority());
             ps.setString(5, setting.getStatus());
             ps.setString(6, setting.getDescription());
@@ -143,7 +143,7 @@ public class SettingDAO {
                 setting.setSetting_id(rs.getInt("setting_id"));
                 setting.setName(rs.getString("name"));
                 setting.setValue(rs.getString("value"));
-                setting.setType_id(rs.getInt("type_id"));
+                setting.setType(rs.getInt("type_id"));
                 setting.setPriority(rs.getInt("priority"));
                 setting.setStatus(rs.getString("status"));
                 setting.setDescription(rs.getString("description"));

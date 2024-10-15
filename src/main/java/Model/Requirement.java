@@ -11,33 +11,50 @@ import java.sql.Timestamp;
  * @author hient
  */
 public class Requirement {
-    
-//     req_id INT PRIMARY KEY AUTO_INCREMENT,
+//    
+// req_id INT PRIMARY KEY AUTO_INCREMENT,
 //    title VARCHAR(255) NOT NULL,
 //    owner_id INT,
-//    complexity_id INT,
-//    status_id INT,
+//    complexity_setting_id INT, -- References setting
+//    status_setting_id INT, -- References setting
 //    description TEXT,
 //    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 //    created_by_id INT,
 //    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 //    updated_by_id INT,
 //    FOREIGN KEY (owner_id) REFERENCES user(user_id),
-//    FOREIGN KEY (complexity_id) REFERENCES requirement_complexity(complexity_id),
-//    FOREIGN KEY (status_id) REFERENCES requirement_status(status_id)
+//    FOREIGN KEY (complexity_setting_id) REFERENCES setting(setting_id),
+//    FOREIGN KEY (status_setting_id) REFERENCES setting(setting_id),
+//    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
+//    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
     
     private int req_id;
     private String title;
     private int owner_id;
-    private int complexity_id;
+    private int complexity_setting_id;
     private int status_id;
     private String description;
     private Timestamp created_at;
     private int created_by_id;
     private Timestamp updated_at;
     private int updated_by_id;
+    
+    
 
     public Requirement() {
+    }
+
+    public Requirement(int req_id, String title, int owner_id, int complexity_setting_id, int status_id, String description, Timestamp created_at, int created_by_id, Timestamp updated_at, int updated_by_id) {
+        this.req_id = req_id;
+        this.title = title;
+        this.owner_id = owner_id;
+        this.complexity_setting_id = complexity_setting_id;
+        this.status_id = status_id;
+        this.description = description;
+        this.created_at = created_at;
+        this.created_by_id = created_by_id;
+        this.updated_at = updated_at;
+        this.updated_by_id = updated_by_id;
     }
 
     public int getReq_id() {
@@ -64,12 +81,12 @@ public class Requirement {
         this.owner_id = owner_id;
     }
 
-    public int getComplexity_id() {
-        return complexity_id;
+    public int getComplexity_setting_id() {
+        return complexity_setting_id;
     }
 
-    public void setComplexity_id(int complexity_id) {
-        this.complexity_id = complexity_id;
+    public void setComplexity_setting_id(int complexity_setting_id) {
+        this.complexity_setting_id = complexity_setting_id;
     }
 
     public int getStatus_id() {
@@ -122,10 +139,7 @@ public class Requirement {
 
     @Override
     public String toString() {
-        return "Requirement{" + "req_id=" + req_id + ", title=" + title + ", owner_id=" + owner_id + ", complexity_id=" + complexity_id + ", status_id=" + status_id + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
+        return "Requirement{" + "req_id=" + req_id + ", title=" + title + ", owner_id=" + owner_id + ", complexity_setting_id=" + complexity_setting_id + ", status_id=" + status_id + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
-    
-    
-
  
 }

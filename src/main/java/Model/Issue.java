@@ -13,9 +13,9 @@ import java.sql.Timestamp;
  */
 public class Issue {
     
-//    issue_id INT PRIMARY KEY AUTO_INCREMENT,
+// issue_id INT PRIMARY KEY AUTO_INCREMENT,
 //    title VARCHAR(255) NOT NULL,
-//    type_id INT,
+//    type_setting_id INT, -- References setting
 //    req_id INT,
 //    assigner_id INT,
 //    assignee_id INT,
@@ -27,14 +27,16 @@ public class Issue {
 //    created_by_id INT,
 //    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 //    updated_by_id INT,
-//    FOREIGN KEY (type_id) REFERENCES issue_types(type_id),
+//    FOREIGN KEY (type_setting_id) REFERENCES setting(setting_id),
 //    FOREIGN KEY (req_id) REFERENCES requirement(req_id),
 //    FOREIGN KEY (assigner_id) REFERENCES user(user_id),
-//    FOREIGN KEY (assignee_id) REFERENCES user(user_id)
+//    FOREIGN KEY (assignee_id) REFERENCES user(user_id),
+//    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
+//    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
     
     private int issue_id;
     private String title;
-    private int type_id;
+    private int type_setting_id;
     private int req_id;
     private int assigner_id;
     private int assignee_id;
@@ -48,6 +50,23 @@ public class Issue {
     private int updated_by_id;
 
     public Issue() {
+    }
+
+    public Issue(int issue_id, String title, int type_setting_id, int req_id, int assigner_id, int assignee_id, Date deadline, String status, Timestamp status_date, String description, Timestamp created_at, int created_by_id, Timestamp updated_at, int updated_by_id) {
+        this.issue_id = issue_id;
+        this.title = title;
+        this.type_setting_id = type_setting_id;
+        this.req_id = req_id;
+        this.assigner_id = assigner_id;
+        this.assignee_id = assignee_id;
+        this.deadline = deadline;
+        this.status = status;
+        this.status_date = status_date;
+        this.description = description;
+        this.created_at = created_at;
+        this.created_by_id = created_by_id;
+        this.updated_at = updated_at;
+        this.updated_by_id = updated_by_id;
     }
 
     public int getIssue_id() {
@@ -66,12 +85,12 @@ public class Issue {
         this.title = title;
     }
 
-    public int getType_id() {
-        return type_id;
+    public int getType_setting_id() {
+        return type_setting_id;
     }
 
-    public void setType_id(int type_id) {
-        this.type_id = type_id;
+    public void setType_setting_id(int type_setting_id) {
+        this.type_setting_id = type_setting_id;
     }
 
     public int getReq_id() {
@@ -164,7 +183,8 @@ public class Issue {
 
     @Override
     public String toString() {
-        return "Issue{" + "issue_id=" + issue_id + ", title=" + title + ", type_id=" + type_id + ", req_id=" + req_id + ", assigner_id=" + assigner_id + ", assignee_id=" + assignee_id + ", deadline=" + deadline + ", status=" + status + ", status_date=" + status_date + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
+        return "Issue{" + "issue_id=" + issue_id + ", title=" + title + ", type_setting_id=" + type_setting_id + ", req_id=" + req_id + ", assigner_id=" + assigner_id + ", assignee_id=" + assignee_id + ", deadline=" + deadline + ", status=" + status + ", status_date=" + status_date + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
-      
+    
+
 }

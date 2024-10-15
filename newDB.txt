@@ -1,89 +1,5 @@
--- Create the database
 CREATE DATABASE IF NOT EXISTS project_management;
 USE project_management;
-
--- Create the setting table
-CREATE TABLE setting (
-    setting_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    value TEXT,
-    type_id INT,
-    priority INT,
-    status ENUM('active', 'inactive') DEFAULT 'active',
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    created_by_id INT,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    updated_by_id INT
-);
-
--- Create the user_roles table
-CREATE TABLE user_roles (
-    role_id INT PRIMARY KEY AUTO_INCREMENT,
-    role_name VARCHAR(50) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    created_by_id INT,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    updated_by_id INT
-);
-
--- Create the departments table
-CREATE TABLE departments (
-    dept_id INT PRIMARY KEY AUTO_INCREMENT,
-    dept_name VARCHAR(100) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    created_by_id INT,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    updated_by_id INT
-);
-
--- Create the project_roles table
-CREATE TABLE project_roles (
-    role_id INT PRIMARY KEY AUTO_INCREMENT,
-    role_name VARCHAR(50) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    created_by_id INT,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    updated_by_id INT
-);
-
--- Create the requirement_complexity table
-CREATE TABLE requirement_complexity (
-    complexity_id INT PRIMARY KEY AUTO_INCREMENT,
-    complexity_name VARCHAR(50) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    created_by_id INT,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    updated_by_id INT
-);
-
--- Create the requirement_status table
-CREATE TABLE requirement_status (
-    status_id INT PRIMARY KEY AUTO_INCREMENT,
-    status_name VARCHAR(50) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    created_by_id INT,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    updated_by_id INT
-);
-
--- Create the issue_types table
-CREATE TABLE issue_types (
-    type_id INT PRIMARY KEY AUTO_INCREMENT,
-    type_name VARCHAR(50) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    created_by_id INT,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    updated_by_id INT
-);
-
--- Create the user table
 CREATE TABLE user (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     full_name VARCHAR(255) NOT NULL,
@@ -91,42 +7,167 @@ CREATE TABLE user (
     email VARCHAR(255) NOT NULL UNIQUE,
     mobile VARCHAR(20),
     password VARCHAR(255) NOT NULL,
-    role_id INT,
+    role_setting_id INT, -- To be added later
     status ENUM('active', 'inactive', 'unverified') DEFAULT 'unverified',
     note TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by_id INT, -- To reference user_id
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    updated_by_id INT  -- To reference user_id
+    -- Foreign keys will be added after the setting table is created
+);
+
+-- ------------------------------------------------------------
+-- 2. Insert Initial User (Admin)
+-- ------------------------------------------------------------
+INSERT INTO user (full_name, user_name, email, mobile, password, status, created_by_id, updated_by_id) VALUES
+('John Doe', 'johndoe', 'john@example.com', '1234567890', 'hashed_password', 'active', NULL, NULL);
+
+-- ------------------------------------------------------------
+-- 3. Create the Setting Table with Foreign Keys to User
+-- ------------------------------------------------------------
+CREATE TABLE setting (
+    setting_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    value VARCHAR(255) NOT NULL,
+    type VARCHAR(50) NOT NULL, -- Categorizes settings
+    priority INT,
+    status ENUM('active', 'inactive') DEFAULT 'active',
+    description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_by_id INT,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     updated_by_id INT,
-    FOREIGN KEY (role_id) REFERENCES user_roles(role_id)
+    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
+    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
 );
 
--- Create the project table
+-- ------------------------------------------------------------
+-- 4. Insert Master Data into Setting Table
+-- (Referencing the Initial User with user_id = 1)
+-- ------------------------------------------------------------
+
+-- User Roles
+INSERT INTO setting (name, value, type, description, created_by_id, updated_by_id) VALUES
+('Admin', 'Administrator with full access', 'user_role', 'Administrator with full access', 1, 1),
+('Project Manager', 'Manages projects and teams', 'user_role', 'Manages projects and teams', 1, 1),
+('Developer', 'Develops and maintains software', 'user_role', 'Develops and maintains software', 1, 1),
+('Tester', 'Performs software testing', 'user_role', 'Performs software testing', 1, 1);
+
+-- Departments
+INSERT INTO setting (name, value, type, description, created_by_id, updated_by_id) VALUES
+('IT', 'Information Technology Department', 'department', 'Information Technology Department', 1, 1),
+('HR', 'Human Resources Department', 'department', 'Human Resources Department', 1, 1),
+('Finance', 'Finance and Accounting Department', 'department', 'Finance and Accounting Department', 1, 1),
+('Marketing', 'Marketing and Sales Department', 'department', 'Marketing and Sales Department', 1, 1);
+
+-- Project Roles
+INSERT INTO setting (name, value, type, description, created_by_id, updated_by_id) VALUES
+('Project Lead', 'Leads the project team', 'project_role', 'Leads the project team', 1, 1),
+('Developer', 'Develops project features', 'project_role', 'Develops project features', 1, 1),
+('Tester', 'Tests project features', 'project_role', 'Tests project features', 1, 1),
+('Designer', 'Designs user interface', 'project_role', 'Designs user interface', 1, 1);
+
+-- Requirement Complexity
+INSERT INTO setting (name, value, type, description, created_by_id, updated_by_id) VALUES
+('Low', 'Simple requirement, easy to implement', 'requirement_complexity', 'Simple requirement, easy to implement', 1, 1),
+('Medium', 'Moderate complexity, requires some effort', 'requirement_complexity', 'Moderate complexity, requires some effort', 1, 1),
+('High', 'Complex requirement, significant effort needed', 'requirement_complexity', 'Complex requirement, significant effort needed', 1, 1);
+
+-- Requirement Status
+INSERT INTO setting (name, value, type, description, created_by_id, updated_by_id) VALUES
+('New', 'Newly created requirement', 'requirement_status', 'Newly created requirement', 1, 1),
+('In Progress', 'Requirement is being worked on', 'requirement_status', 'Requirement is being worked on', 1, 1),
+('Review', 'Requirement is under review', 'requirement_status', 'Requirement is under review', 1, 1),
+('Done', 'Requirement is completed', 'requirement_status', 'Requirement is completed', 1, 1);
+
+-- Issue Types
+INSERT INTO setting (name, value, type, description, created_by_id, updated_by_id) VALUES
+('Bug', 'Software defect', 'issue_type', 'Software defect', 1, 1),
+('Feature', 'New feature request', 'issue_type', 'New feature request', 1, 1),
+('Enhancement', 'Improvement to existing feature', 'issue_type', 'Improvement to existing feature', 1, 1),
+('Task', 'General task', 'issue_type', 'General task', 1, 1);
+
+-- ------------------------------------------------------------
+-- 5. Update the Initial User to Set role_setting_id to 'Admin'
+-- ------------------------------------------------------------
+UPDATE user 
+SET role_setting_id = (
+    SELECT setting_id 
+    FROM setting 
+    WHERE name = 'Admin' AND type = 'user_role'
+) 
+WHERE user_id = 1;
+
+-- ------------------------------------------------------------
+-- 6. Update created_by_id and updated_by_id for the Initial User
+-- (Assuming the user is self-created)
+-- ------------------------------------------------------------
+UPDATE user 
+SET created_by_id = 1, updated_by_id = 1 
+WHERE user_id = 1;
+
+-- ------------------------------------------------------------
+-- 7. Add Foreign Key Constraints for created_by_id and updated_by_id in User Table
+-- ------------------------------------------------------------
+ALTER TABLE user
+    ADD CONSTRAINT fk_user_created_by FOREIGN KEY (created_by_id) REFERENCES user(user_id),
+    ADD CONSTRAINT fk_user_updated_by FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
+
+-- ------------------------------------------------------------
+-- 8. Insert Additional Users
+-- ------------------------------------------------------------
+INSERT INTO user (full_name, user_name, email, mobile, password, role_setting_id, status, created_by_id, updated_by_id) VALUES
+('Jane Smith', 'janesmith', 'jane@example.com', '0987654321', 'hashed_password', 
+    (SELECT setting_id FROM setting WHERE name = 'Project Manager' AND type = 'user_role'), 'active', 1, 1),
+('Bob Johnson', 'bobjohnson', 'bob@example.com', '1122334455', 'hashed_password', 
+    (SELECT setting_id FROM setting WHERE name = 'Developer' AND type = 'user_role'), 'active', 1, 1),
+('Alice Brown', 'alicebrown', 'alice@example.com', '5544332211', 'hashed_password', 
+    (SELECT setting_id FROM setting WHERE name = 'Tester' AND type = 'user_role'), 'active', 1, 1);
+
+-- ------------------------------------------------------------
+-- 9. Create the Project Table
+-- ------------------------------------------------------------
 CREATE TABLE project (
     project_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     code VARCHAR(50) NOT NULL UNIQUE,
     start_date DATE,
     end_date DATE,
-    dept_id INT,
+    dept_setting_id INT, -- References setting
     status ENUM('pending', 'in-progress', 'closed', 'cancelled') DEFAULT 'pending',
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_by_id INT,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     updated_by_id INT,
-    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+    FOREIGN KEY (dept_setting_id) REFERENCES setting(setting_id),
+    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
+    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
 );
 
--- Create the allocation table
+-- ------------------------------------------------------------
+-- 10. Insert Data into Project Table
+-- ------------------------------------------------------------
+INSERT INTO project (name, code, start_date, end_date, dept_setting_id, status, description, created_by_id, updated_by_id) VALUES
+('E-commerce Platform', 'ECOM001', '2024-01-01', '2024-12-31', 
+    (SELECT setting_id FROM setting WHERE name = 'IT' AND type = 'department'), 'in-progress', 'Building a new e-commerce platform', 1, 1),
+('HR Management System', 'HRMS001', '2024-02-01', '2024-08-31', 
+    (SELECT setting_id FROM setting WHERE name = 'HR' AND type = 'department'), 'pending', 'Developing an HR management system', 1, 1),
+('Financial Reporting Tool', 'FIN001', '2024-03-01', '2024-09-30', 
+    (SELECT setting_id FROM setting WHERE name = 'Finance' AND type = 'department'), 'in-progress', 'Creating a financial reporting tool', 1, 1);
+
+-- ------------------------------------------------------------
+-- 11. Create the Allocation Table with 'rate' Instead of 'effort'
+-- ------------------------------------------------------------
 CREATE TABLE allocation (
     allocation_id INT PRIMARY KEY AUTO_INCREMENT,
     member_id INT,
     project_id INT,
-    role_id INT,
+    role_setting_id INT, -- References setting
     from_date DATE,
     to_date DATE,
-    effort FLOAT,
+    rate TINYINT NOT NULL, -- Changed from effort FLOAT to rate TINYINT
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_by_id INT,
@@ -134,31 +175,70 @@ CREATE TABLE allocation (
     updated_by_id INT,
     FOREIGN KEY (member_id) REFERENCES user(user_id),
     FOREIGN KEY (project_id) REFERENCES project(project_id),
-    FOREIGN KEY (role_id) REFERENCES project_roles(role_id)
+    FOREIGN KEY (role_setting_id) REFERENCES setting(setting_id),
+    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
+    FOREIGN KEY (updated_by_id) REFERENCES user(user_id),
+    CHECK (rate BETWEEN 1 AND 100) -- Ensures rate is between 1 and 100
 );
 
--- Create the requirement table
+-- ------------------------------------------------------------
+-- 12. Insert Data into Allocation Table
+-- ------------------------------------------------------------
+INSERT INTO allocation (member_id, project_id, role_setting_id, from_date, to_date, rate, description, created_by_id, updated_by_id) VALUES
+(1, 1, (SELECT setting_id FROM setting WHERE name = 'Project Lead' AND type = 'project_role'), '2024-01-01', '2024-12-31', 100, 'Project lead for E-commerce Platform', 1, 1),
+(2, 1, (SELECT setting_id FROM setting WHERE name = 'Developer' AND type = 'project_role'), '2024-01-01', '2024-12-31', 80, 'Developer for E-commerce Platform', 1, 1),
+(3, 2, (SELECT setting_id FROM setting WHERE name = 'Project Lead' AND type = 'project_role'), '2024-02-01', '2024-08-31', 100, 'Project lead for HR Management System', 1, 1),
+(4, 2, (SELECT setting_id FROM setting WHERE name = 'Tester' AND type = 'project_role'), '2024-02-01', '2024-08-31', 60, 'Tester for HR Management System', 1, 1);
+
+-- ------------------------------------------------------------
+-- 13. Create the Requirement Table
+-- ------------------------------------------------------------
 CREATE TABLE requirement (
     req_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     owner_id INT,
-    complexity_id INT,
-    status_id INT,
+    complexity_setting_id INT, -- References setting
+    status_setting_id INT, -- References setting
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_by_id INT,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     updated_by_id INT,
     FOREIGN KEY (owner_id) REFERENCES user(user_id),
-    FOREIGN KEY (complexity_id) REFERENCES requirement_complexity(complexity_id),
-    FOREIGN KEY (status_id) REFERENCES requirement_status(status_id)
+    FOREIGN KEY (complexity_setting_id) REFERENCES setting(setting_id),
+    FOREIGN KEY (status_setting_id) REFERENCES setting(setting_id),
+    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
+    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
 );
 
--- Create the issue table
+-- ------------------------------------------------------------
+-- 14. Insert Data into Requirement Table
+-- ------------------------------------------------------------
+INSERT INTO requirement (title, owner_id, complexity_setting_id, status_setting_id, description, created_by_id, updated_by_id) VALUES
+('User Authentication', 1, 
+    (SELECT setting_id FROM setting WHERE name = 'Medium' AND type = 'requirement_complexity'), 
+    (SELECT setting_id FROM setting WHERE name = 'In Progress' AND type = 'requirement_status'), 
+    'Implement user authentication system', 1, 1),
+('Product Catalog', 2, 
+    (SELECT setting_id FROM setting WHERE name = 'High' AND type = 'requirement_complexity'), 
+    (SELECT setting_id FROM setting WHERE name = 'New' AND type = 'requirement_status'), 
+    'Create product catalog with search and filter options', 1, 1),
+('Employee Onboarding', 3, 
+    (SELECT setting_id FROM setting WHERE name = 'Medium' AND type = 'requirement_complexity'), 
+    (SELECT setting_id FROM setting WHERE name = 'In Progress' AND type = 'requirement_status'), 
+    'Develop employee onboarding workflow', 1, 1),
+('Financial Reports', 4, 
+    (SELECT setting_id FROM setting WHERE name = 'High' AND type = 'requirement_complexity'), 
+    (SELECT setting_id FROM setting WHERE name = 'New' AND type = 'requirement_status'), 
+    'Generate monthly and yearly financial reports', 1, 1);
+
+-- ------------------------------------------------------------
+-- 15. Create the Issue Table
+-- ------------------------------------------------------------
 CREATE TABLE issue (
     issue_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
-    type_id INT,
+    type_setting_id INT, -- References setting
     req_id INT,
     assigner_id INT,
     assignee_id INT,
@@ -170,133 +250,27 @@ CREATE TABLE issue (
     created_by_id INT,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     updated_by_id INT,
-    FOREIGN KEY (type_id) REFERENCES issue_types(type_id),
+    FOREIGN KEY (type_setting_id) REFERENCES setting(setting_id),
     FOREIGN KEY (req_id) REFERENCES requirement(req_id),
     FOREIGN KEY (assigner_id) REFERENCES user(user_id),
-    FOREIGN KEY (assignee_id) REFERENCES user(user_id)
+    FOREIGN KEY (assignee_id) REFERENCES user(user_id),
+    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
+    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
 );
 
--- Add foreign key constraints for created_by_id and updated_by_id
-ALTER TABLE setting ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE setting ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
-ALTER TABLE user_roles ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE user_roles ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
-ALTER TABLE departments ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE departments ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
-ALTER TABLE project_roles ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE project_roles ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
-ALTER TABLE requirement_complexity ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE requirement_complexity ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
-ALTER TABLE requirement_status ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE requirement_status ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
-ALTER TABLE issue_types ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE issue_types ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
-ALTER TABLE user ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE user ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
-ALTER TABLE project ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE project ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
-ALTER TABLE allocation ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE allocation ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
-ALTER TABLE requirement ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE requirement ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
-ALTER TABLE issue ADD FOREIGN KEY (created_by_id) REFERENCES user(user_id);
-ALTER TABLE issue ADD FOREIGN KEY (updated_by_id) REFERENCES user(user_id);
-
--- Insert data into user_roles
-INSERT INTO user_roles (role_name, description) VALUES
-('Admin', 'Administrator with full access'),
-('Project Manager', 'Manages projects and teams'),
-('Developer', 'Develops and maintains software'),
-('Tester', 'Performs software testing');
-
--- Insert data into departments
-INSERT INTO departments (dept_name, description) VALUES
-('IT', 'Information Technology Department'),
-('HR', 'Human Resources Department'),
-('Finance', 'Finance and Accounting Department'),
-('Marketing', 'Marketing and Sales Department');
-
--- Insert data into project_roles
-INSERT INTO project_roles (role_name, description) VALUES
-('Project Lead', 'Leads the project team'),
-('Developer', 'Develops project features'),
-('Tester', 'Tests project features'),
-('Designer', 'Designs user interface');
-
--- Insert data into requirement_complexity
-INSERT INTO requirement_complexity (complexity_name, description) VALUES
-('Low', 'Simple requirement, easy to implement'),
-('Medium', 'Moderate complexity, requires some effort'),
-('High', 'Complex requirement, significant effort needed');
-
--- Insert data into requirement_status
-INSERT INTO requirement_status (status_name, description) VALUES
-('New', 'Newly created requirement'),
-('In Progress', 'Requirement is being worked on'),
-('Review', 'Requirement is under review'),
-('Done', 'Requirement is completed');
-
--- Insert data into issue_types
-INSERT INTO issue_types (type_name, description) VALUES
-('Bug', 'Software defect'),
-('Feature', 'New feature request'),
-('Enhancement', 'Improvement to existing feature'),
-('Task', 'General task');
-
--- Insert data into user
-INSERT INTO user (full_name, user_name, email, mobile, password, role_id, status) VALUES
-('John Doe', 'johndoe', 'john@example.com', '1234567890', 'hashed_password', 1, 'active'),
-('Jane Smith', 'janesmith', 'jane@example.com', '0987654321', 'hashed_password', 2, 'active'),
-('Bob Johnson', 'bobjohnson', 'bob@example.com', '1122334455', 'hashed_password', 3, 'active'),
-('Alice Brown', 'alicebrown', 'alice@example.com', '5544332211', 'hashed_password', 4, 'active');
-
--- Insert data into project
-INSERT INTO project (name, code, start_date, end_date, dept_id, status, description) VALUES
-('E-commerce Platform', 'ECOM001', '2024-01-01', '2024-12-31', 1, 'in-progress', 'Building a new e-commerce platform'),
-('HR Management System', 'HRMS001', '2024-02-01', '2024-08-31', 2, 'pending', 'Developing an HR management system'),
-('Financial Reporting Tool', 'FIN001', '2024-03-01', '2024-09-30', 3, 'in-progress', 'Creating a financial reporting tool');
-
--- Insert data into allocation
-INSERT INTO allocation (member_id, project_id, role_id, from_date, to_date, effort, description) VALUES
-(1, 1, 1, '2024-01-01', '2024-12-31', 100, 'Project lead for E-commerce Platform'),
-(2, 1, 2, '2024-01-01', '2024-12-31', 80, 'Developer for E-commerce Platform'),
-(3, 2, 1, '2024-02-01', '2024-08-31', 100, 'Project lead for HR Management System'),
-(4, 2, 3, '2024-02-01', '2024-08-31', 60, 'Tester for HR Management System');
-
--- Insert data into requirement
-INSERT INTO requirement (title, owner_id, complexity_id, status_id, description) VALUES
-('User Authentication', 1, 2, 2, 'Implement user authentication system'),
-('Product Catalog', 2, 3, 1, 'Create product catalog with search and filter options'),
-('Employee Onboarding', 3, 2, 2, 'Develop employee onboarding workflow'),
-('Financial Reports', 4, 3, 1, 'Generate monthly and yearly financial reports');
-
--- Insert data into issue
-INSERT INTO issue (title, type_id, req_id, assigner_id, assignee_id, deadline, status, status_date, description) VALUES
-('Login page not responsive', 1, 1, 1, 2, '2024-02-15', 'doing', '2024-01-20', 'Login page is not displaying correctly on mobile devices'),
-('Add sorting to product list', 2, 2, 2, 3, '2024-03-31', 'to do', '2024-01-25', 'Implement sorting functionality for product catalog'),
-('Onboarding email not sending', 1, 3, 3, 4, '2024-02-28', 'pending', '2024-02-05', 'Automated onboarding email is not being sent to new employees'),
-('Incorrect calculation in yearly report', 1, 4, 4, 1, '2024-03-15', 'done', '2024-03-10', 'Fixed incorrect calculation in yearly financial report');
-
-UPDATE setting SET created_by_id = 1, updated_by_id = 1 WHERE setting_id > 0;
-UPDATE user_roles SET created_by_id = 1, updated_by_id = 1 WHERE role_id > 0;
-UPDATE departments SET created_by_id = 1, updated_by_id = 1 WHERE dept_id > 0;
-UPDATE project_roles SET created_by_id = 1, updated_by_id = 1 WHERE role_id > 0;
-UPDATE requirement_complexity SET created_by_id = 1, updated_by_id = 1 WHERE complexity_id > 0;
-UPDATE requirement_status SET created_by_id = 1, updated_by_id = 1 WHERE status_id > 0;
-UPDATE issue_types SET created_by_id = 1, updated_by_id = 1 WHERE type_id > 0;
-UPDATE user SET created_by_id = 1, updated_by_id = 1 WHERE user_id > 0;
-UPDATE project SET created_by_id = 1, updated_by_id = 1 WHERE project_id > 0;
-UPDATE allocation SET created_by_id = 1, updated_by_id = 1 WHERE allocation_id > 0;
-UPDATE requirement SET created_by_id = 1, updated_by_id = 1 WHERE req_id > 0;
-UPDATE issue SET created_by_id = 1, updated_by_id = 1 WHERE issue_id > 0;
+-- ------------------------------------------------------------
+-- 16. Insert Data into Issue Table
+-- ------------------------------------------------------------
+INSERT INTO issue (title, type_setting_id, req_id, assigner_id, assignee_id, deadline, status, status_date, description, created_by_id, updated_by_id) VALUES
+('Login page not responsive', 
+    (SELECT setting_id FROM setting WHERE name = 'Bug' AND type = 'issue_type'), 
+    1, 1, 2, '2024-02-15', 'doing', '2024-01-20', 'Login page is not displaying correctly on mobile devices', 1, 1),
+('Add sorting to product list', 
+    (SELECT setting_id FROM setting WHERE name = 'Feature' AND type = 'issue_type'), 
+    2, 2, 3, '2024-03-31', 'to do', '2024-01-25', 'Implement sorting functionality for product catalog', 1, 1),
+('Onboarding email not sending', 
+    (SELECT setting_id FROM setting WHERE name = 'Bug' AND type = 'issue_type'), 
+    3, 3, 4, '2024-02-28', 'pending', '2024-02-05', 'Automated onboarding email is not being sent to new employees', 1, 1),
+('Incorrect calculation in yearly report', 
+    (SELECT setting_id FROM setting WHERE name = 'Bug' AND type = 'issue_type'), 
+    4, 4, 1, '2024-03-15', 'done', '2024-03-10', 'Fixed incorrect calculation in yearly financial report', 1, 1);

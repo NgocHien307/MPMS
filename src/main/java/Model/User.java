@@ -12,13 +12,28 @@ import java.sql.Timestamp;
  */
 public class User {
     
+//     user_id INT PRIMARY KEY AUTO_INCREMENT,
+//    full_name VARCHAR(255) NOT NULL,
+//    user_name VARCHAR(50) NOT NULL UNIQUE,
+//    email VARCHAR(255) NOT NULL UNIQUE,
+//    mobile VARCHAR(20),
+//    password VARCHAR(255) NOT NULL,
+//    role_setting_id INT, -- To be added later
+//    status ENUM('active', 'inactive', 'unverified') DEFAULT 'unverified',
+//    note TEXT,
+//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//    created_by_id INT, -- To reference user_id
+//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//    updated_by_id INT  -- To reference user_id
+//    -- Foreign keys will be added after the setting table is created
+    
      private int user_id;
     private String full_name;
     private String user_name;
     private String email;
     private String mobile;
     private String password;
-    private int role_id;
+    private int role_setting_id;
     private String status;
     private String note;
     private Timestamp created_at;
@@ -29,43 +44,27 @@ public class User {
     public User() {
     }
 
-    public User(int user_id, String full_name, String user_name, String email, String mobile, String password, int role_id, String status, String note, Timestamp created_at, int created_by_id, Timestamp updated_at, int updated_by_id) {
-        this.user_id = user_id;
-        this.full_name = full_name;
-        this.user_name = user_name;
-        this.email = email;
-        this.mobile = mobile;
-        this.password = password;
-        this.role_id = role_id;
-        this.status = status;
-        this.note = note;
-        this.created_at = created_at;
-        this.created_by_id = created_by_id;
-        this.updated_at = updated_at;
-        this.updated_by_id = updated_by_id;
-    }
-
-    public int getUserId() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUserId(int user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
-    public String getFullName() {
+    public String getFull_name() {
         return full_name;
     }
 
-    public void setFullName(String full_name) {
+    public void setFull_name(String full_name) {
         this.full_name = full_name;
     }
 
-    public String getUserName() {
+    public String getUser_name() {
         return user_name;
     }
 
-    public void setUserName(String user_name) {
+    public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
 
@@ -93,12 +92,12 @@ public class User {
         this.password = password;
     }
 
-    public int getRoleId() {
-        return role_id;
+    public int getRole_setting_id() {
+        return role_setting_id;
     }
 
-    public void setRoleId(int role_id) {
-        this.role_id = role_id;
+    public void setRole_setting_id(int role_setting_id) {
+        this.role_setting_id = role_setting_id;
     }
 
     public String getStatus() {
@@ -117,40 +116,42 @@ public class User {
         this.note = note;
     }
 
-    public Timestamp getCreatedAt() {
+    public Timestamp getCreated_at() {
         return created_at;
     }
 
-    public void setCreatedAt(Timestamp created_at) {
+    public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
 
-    public int getCreatedById() {
+    public int getCreated_by_id() {
         return created_by_id;
     }
 
-    public void setCreatedById(int created_by_id) {
+    public void setCreated_by_id(int created_by_id) {
         this.created_by_id = created_by_id;
     }
 
-    public Timestamp getUpdatedAt() {
+    public Timestamp getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdatedAt(Timestamp updated_at) {
+    public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
 
-    public int getUpdatedById() {
+    public int getUpdated_by_id() {
         return updated_by_id;
     }
 
-    public void setUpdatedById(int updated_by_id) {
+    public void setUpdated_by_id(int updated_by_id) {
         this.updated_by_id = updated_by_id;
     }
 
     @Override
     public String toString() {
-        return "User{" + "user_id=" + user_id + ", full_name=" + full_name + ", user_name=" + user_name + ", email=" + email + ", mobile=" + mobile + ", password=" + password + ", role_id=" + role_id + ", status=" + status + ", note=" + note + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
+        return "User{" + "user_id=" + user_id + ", full_name=" + full_name + ", user_name=" + user_name + ", email=" + email + ", mobile=" + mobile + ", password=" + password + ", role_setting_id=" + role_setting_id + ", status=" + status + ", note=" + note + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
+
+    
 }

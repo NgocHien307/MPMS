@@ -12,22 +12,25 @@ import java.sql.Timestamp;
  */
 public class Setting {
 
-//    setting_id INT PRIMARY KEY AUTO_INCREMENT,
+//setting_id INT PRIMARY KEY AUTO_INCREMENT,
 //    name VARCHAR(255) NOT NULL,
-//    value TEXT,
-//    type_id INT,
+//    value VARCHAR(255) NOT NULL,
+//    type VARCHAR(50) NOT NULL, -- Categorizes settings
 //    priority INT,
 //    status ENUM('active', 'inactive') DEFAULT 'active',
 //    description TEXT,
 //    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 //    created_by_id INT,
 //    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-//    updated_by_id INT
+//    updated_by_id INT,
+//    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
+//    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
+
 
     private int setting_id;
     private String name;
     private String value;
-    private int type_id;
+    private int type;
     private int priority;
     private String status;
     private String description;
@@ -40,11 +43,11 @@ public class Setting {
     public Setting() {
     }
 
-    public Setting(int setting_id, String name, String value, int type_id, int priority, String status, String description, Timestamp created_at, int created_by_id, Timestamp updated_at, int updated_by_id) {
+    public Setting(int setting_id, String name, String value, int type, int priority, String status, String description, Timestamp created_at, int created_by_id, Timestamp updated_at, int updated_by_id) {
         this.setting_id = setting_id;
         this.name = name;
         this.value = value;
-        this.type_id = type_id;
+        this.type = type;
         this.priority = priority;
         this.status = status;
         this.description = description;
@@ -78,12 +81,12 @@ public class Setting {
         this.value = value;
     }
 
-    public int getType_id() {
-        return type_id;
+    public int getType() {
+        return type;
     }
 
-    public void setType_id(int type_id) {
-        this.type_id = type_id;
+    public void setType(int type) {
+        this.type = type;
     }
 
     public int getPriority() {
@@ -144,6 +147,8 @@ public class Setting {
 
     @Override
     public String toString() {
-        return "Setting{" + "setting_id=" + setting_id + ", name=" + name + ", value=" + value + ", type_id=" + type_id + ", priority=" + priority + ", status=" + status + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
+        return "Setting{" + "setting_id=" + setting_id + ", name=" + name + ", value=" + value + ", type=" + type + ", priority=" + priority + ", status=" + status + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
+
+   
 }

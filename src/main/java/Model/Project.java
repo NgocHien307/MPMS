@@ -13,32 +13,51 @@ import java.sql.Timestamp;
  */
 public class Project {
     
-//     project_id INT PRIMARY KEY AUTO_INCREMENT,
+// project_id INT PRIMARY KEY AUTO_INCREMENT,
 //    name VARCHAR(255) NOT NULL,
 //    code VARCHAR(50) NOT NULL UNIQUE,
 //    start_date DATE,
 //    end_date DATE,
-//    dept_id INT,
+//    dept_setting_id INT, -- References setting
 //    status ENUM('pending', 'in-progress', 'closed', 'cancelled') DEFAULT 'pending',
 //    description TEXT,
 //    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 //    created_by_id INT,
 //    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 //    updated_by_id INT,
-//    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+//    FOREIGN KEY (dept_setting_id) REFERENCES setting(setting_id),
+//    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
+//    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
     
     private int project_id;
     private String name;
     private String code;
     private Date start_date;
     private Date end_date;
-    private int dept_id;
+    private int dept_setting_id;
     private String status;
     private String description;
     private Timestamp created_at;
     private int created_by_id;
     private Timestamp updated_at;
     private int updated_by_id;
+
+    public Project(int project_id, String name, String code, Date start_date, Date end_date, int dept_setting_id, String status, String description, Timestamp created_at, int created_by_id, Timestamp updated_at, int updated_by_id) {
+        this.project_id = project_id;
+        this.name = name;
+        this.code = code;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.dept_setting_id = dept_setting_id;
+        this.status = status;
+        this.description = description;
+        this.created_at = created_at;
+        this.created_by_id = created_by_id;
+        this.updated_at = updated_at;
+        this.updated_by_id = updated_by_id;
+    }
+    
+    
 
     public Project() {
     }
@@ -83,12 +102,12 @@ public class Project {
         this.end_date = end_date;
     }
 
-    public int getDept_id() {
-        return dept_id;
+    public int getDept_setting_id() {
+        return dept_setting_id;
     }
 
-    public void setDept_id(int dept_id) {
-        this.dept_id = dept_id;
+    public void setDept_setting_id(int dept_setting_id) {
+        this.dept_setting_id = dept_setting_id;
     }
 
     public String getStatus() {
@@ -141,8 +160,11 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project{" + "project_id=" + project_id + ", name=" + name + ", code=" + code + ", start_date=" + start_date + ", end_date=" + end_date + ", dept_id=" + dept_id + ", status=" + status + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
+        return "Project{" + "project_id=" + project_id + ", name=" + name + ", code=" + code + ", start_date=" + start_date + ", end_date=" + end_date + ", dept_setting_id=" + dept_setting_id + ", status=" + status + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
+
+    
+   
 
     
     

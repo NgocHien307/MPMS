@@ -12,37 +12,38 @@ import java.sql.Timestamp;
  * @author hient
  */
 public class Allocation {
-    
-//    allocation_id INT PRIMARY KEY AUTO_INCREMENT,
-//    member_id INT,
-//    project_id INT,
-//    role_id INT,
-//    from_date DATE,
-//    to_date DATE,
-//    effort FLOAT,
-//    description TEXT,
-//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//    created_by_id INT,
-//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-//    updated_by_id INT,
-//    FOREIGN KEY (member_id) REFERENCES user(user_id),
-//    FOREIGN KEY (project_id) REFERENCES project(project_id),
-//    FOREIGN KEY (role_id) REFERENCES project_roles(role_id)
+   
     
     private int allocation_id;
     private int member_id;
     private int project_id;
-    private int role_id;
+    private int role_setting_id;
     private Date from_date;
     private Date to_date;
-    private float effort;
+    private float rate;
     private String description;
     private Timestamp created_at;
     private int created_by_id;
     private Timestamp updated_at;
     private int updated_by_id;
+    
 
     public Allocation() {
+    }
+
+    public Allocation(int allocation_id, int member_id, int project_id, int role_setting_id, Date from_date, Date to_date, float rate, String description, Timestamp created_at, int created_by_id, Timestamp updated_at, int updated_by_id) {
+        this.allocation_id = allocation_id;
+        this.member_id = member_id;
+        this.project_id = project_id;
+        this.role_setting_id = role_setting_id;
+        this.from_date = from_date;
+        this.to_date = to_date;
+        this.rate = rate;
+        this.description = description;
+        this.created_at = created_at;
+        this.created_by_id = created_by_id;
+        this.updated_at = updated_at;
+        this.updated_by_id = updated_by_id;
     }
 
     public int getAllocation_id() {
@@ -69,12 +70,12 @@ public class Allocation {
         this.project_id = project_id;
     }
 
-    public int getRole_id() {
-        return role_id;
+    public int getRole_setting_id() {
+        return role_setting_id;
     }
 
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setRole_setting_id(int role_setting_id) {
+        this.role_setting_id = role_setting_id;
     }
 
     public Date getFrom_date() {
@@ -93,12 +94,12 @@ public class Allocation {
         this.to_date = to_date;
     }
 
-    public float getEffort() {
-        return effort;
+    public float getRate() {
+        return rate;
     }
 
-    public void setEffort(float effort) {
-        this.effort = effort;
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 
     public String getDescription() {
@@ -143,8 +144,10 @@ public class Allocation {
 
     @Override
     public String toString() {
-        return "Allocation{" + "allocation_id=" + allocation_id + ", member_id=" + member_id + ", project_id=" + project_id + ", role_id=" + role_id + ", from_date=" + from_date + ", to_date=" + to_date + ", effort=" + effort + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
+        return "Allocation{" + "allocation_id=" + allocation_id + ", member_id=" + member_id + ", project_id=" + project_id + ", role_setting_id=" + role_setting_id + ", from_date=" + from_date + ", to_date=" + to_date + ", rate=" + rate + ", description=" + description + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + '}';
     }
+    
+    
 
    
 }
