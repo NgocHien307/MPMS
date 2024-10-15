@@ -11,21 +11,7 @@ import java.sql.Timestamp;
  * @author hient
  */
 public class User {
-    
-//     user_id INT PRIMARY KEY AUTO_INCREMENT,
-//    full_name VARCHAR(255) NOT NULL,
-//    user_name VARCHAR(50) NOT NULL UNIQUE,
-//    email VARCHAR(255) NOT NULL UNIQUE,
-//    mobile VARCHAR(20),
-//    password VARCHAR(255) NOT NULL,
-//    role_setting_id INT, -- To be added later
-//    status ENUM('active', 'inactive', 'unverified') DEFAULT 'unverified',
-//    note TEXT,
-//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//    created_by_id INT, -- To reference user_id
-//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-//    updated_by_id INT  -- To reference user_id
-//    -- Foreign keys will be added after the setting table is created
+
     
      private int user_id;
     private String full_name;

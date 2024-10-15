@@ -13,21 +13,7 @@ import java.sql.Timestamp;
  */
 public class Project {
     
-// project_id INT PRIMARY KEY AUTO_INCREMENT,
-//    name VARCHAR(255) NOT NULL,
-//    code VARCHAR(50) NOT NULL UNIQUE,
-//    start_date DATE,
-//    end_date DATE,
-//    dept_setting_id INT, -- References setting
-//    status ENUM('pending', 'in-progress', 'closed', 'cancelled') DEFAULT 'pending',
-//    description TEXT,
-//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//    created_by_id INT,
-//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-//    updated_by_id INT,
-//    FOREIGN KEY (dept_setting_id) REFERENCES setting(setting_id),
-//    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
-//    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
+
     
     private int project_id;
     private String name;

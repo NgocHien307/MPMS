@@ -11,22 +11,7 @@ import java.sql.Timestamp;
  * @author hient
  */
 public class Requirement {
-//    
-// req_id INT PRIMARY KEY AUTO_INCREMENT,
-//    title VARCHAR(255) NOT NULL,
-//    owner_id INT,
-//    complexity_setting_id INT, -- References setting
-//    status_setting_id INT, -- References setting
-//    description TEXT,
-//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//    created_by_id INT,
-//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-//    updated_by_id INT,
-//    FOREIGN KEY (owner_id) REFERENCES user(user_id),
-//    FOREIGN KEY (complexity_setting_id) REFERENCES setting(setting_id),
-//    FOREIGN KEY (status_setting_id) REFERENCES setting(setting_id),
-//    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
-//    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
+
     
     private int req_id;
     private String title;

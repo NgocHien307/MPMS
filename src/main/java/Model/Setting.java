@@ -12,19 +12,7 @@ import java.sql.Timestamp;
  */
 public class Setting {
 
-//setting_id INT PRIMARY KEY AUTO_INCREMENT,
-//    name VARCHAR(255) NOT NULL,
-//    value VARCHAR(255) NOT NULL,
-//    type VARCHAR(50) NOT NULL, -- Categorizes settings
-//    priority INT,
-//    status ENUM('active', 'inactive') DEFAULT 'active',
-//    description TEXT,
-//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//    created_by_id INT,
-//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-//    updated_by_id INT,
-//    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
-//    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
+
 
 
     private int setting_id;

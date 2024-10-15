@@ -12,27 +12,7 @@ import java.sql.Timestamp;
  * @author hient
  */
 public class Issue {
-    
-// issue_id INT PRIMARY KEY AUTO_INCREMENT,
-//    title VARCHAR(255) NOT NULL,
-//    type_setting_id INT, -- References setting
-//    req_id INT,
-//    assigner_id INT,
-//    assignee_id INT,
-//    deadline DATE,
-//    status ENUM('pending', 'to do', 'doing', 'done', 'closed') DEFAULT 'pending',
-//    status_date TIMESTAMP,
-//    description TEXT,
-//    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//    created_by_id INT,
-//    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-//    updated_by_id INT,
-//    FOREIGN KEY (type_setting_id) REFERENCES setting(setting_id),
-//    FOREIGN KEY (req_id) REFERENCES requirement(req_id),
-//    FOREIGN KEY (assigner_id) REFERENCES user(user_id),
-//    FOREIGN KEY (assignee_id) REFERENCES user(user_id),
-//    FOREIGN KEY (created_by_id) REFERENCES user(user_id),
-//    FOREIGN KEY (updated_by_id) REFERENCES user(user_id)
+
     
     private int issue_id;
     private String title;

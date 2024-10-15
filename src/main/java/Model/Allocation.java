@@ -7,10 +7,6 @@ package Model;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-/**
- *
- * @author hient
- */
 public class Allocation {
    
     
