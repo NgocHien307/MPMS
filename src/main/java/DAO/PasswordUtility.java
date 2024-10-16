@@ -12,7 +12,7 @@ public class PasswordUtility {
     // Kiểm tra mật khẩu
     public static boolean checkPassword(String plainTextPassword, String hashedPassword){
         if (hashedPassword == null || !hashedPassword.startsWith("$2a$")) {
-            throw new IllegalArgumentException("Invalid hashed password");
+            return false; // Trả về false thay vì ném ngoại lệ
         }
         return BCrypt.checkpw(plainTextPassword, hashedPassword);
     }

@@ -29,8 +29,56 @@ public class User {
     private String verification_code; // Thêm trường mã xác thực email
     private String otp;
 
+    public static final int ROLE_ADMIN = 1;
+    public static final int ROLE_MANAGER = 2;
+    public static final int ROLE_PROJECT_MANAGER = 3;
+    public static final int ROLE_MEMBER = 4;
+    public static final int ROLE_GUEST = 5;
+
     public User() {
     }
+
+    public User(int user_id, String full_name, String user_name, String email, String mobile, String password, int role_setting_id, String status, String note, Timestamp created_at, int created_by_id, Timestamp updated_at, int updated_by_id, String verification_code, String otp) {
+        this.user_id = user_id;
+        this.full_name = full_name;
+        this.user_name = user_name;
+        this.email = email;
+        this.mobile = mobile;
+        this.password = password;
+        this.role_setting_id = role_setting_id;
+        this.status = status;
+        this.note = note;
+        this.created_at = created_at;
+        this.created_by_id = created_by_id;
+        this.updated_at = updated_at;
+        this.updated_by_id = updated_by_id;
+        this.verification_code = verification_code;
+        this.otp = otp;
+    }
+
+    // Phương thức lấy tên vai trò
+    public String getRoleName() {
+        switch (this.role_setting_id) {
+            case ROLE_ADMIN:
+                return "Admin";
+            case ROLE_MANAGER:
+                return "Manager";
+            case ROLE_PROJECT_MANAGER:
+                return "Project Manager";
+            case ROLE_MEMBER:
+                return "Member";
+            case ROLE_GUEST:
+                return "Guest";
+            default:
+                return "Unknown";
+        }
+    }
+
+    // Phương thức kiểm tra vai trò
+    public boolean hasRole(String roleName) {
+        return roleName.equalsIgnoreCase(this.getRoleName());
+    }
+
 
     public int getUser_id() {
         return user_id;
@@ -155,6 +203,5 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "user_id=" + user_id + ", full_name=" + full_name + ", user_name=" + user_name + ", email=" + email + ", mobile=" + mobile + ", password=" + password + ", role_setting_id=" + role_setting_id + ", status=" + status + ", note=" + note + ", created_at=" + created_at + ", created_by_id=" + created_by_id + ", updated_at=" + updated_at + ", updated_by_id=" + updated_by_id + ", verification_code=" + verification_code + ", otp=" + otp + '}';
-
     }
 }

@@ -1,43 +1,17 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page session="false" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Project Management System</title>
-  <style>
-    /* CSS cơ bản cho giao diện */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      text-align: center;
-      padding-top: 100px;
-    }
-    .container {
-      background-color: #fff;
-      padding: 50px;
-      margin: auto;
-      width: 50%;
-      box-shadow: 0px 0px 10px 0px #000;
-      border-radius: 10px;
-    }
-    a {
-      display: inline-block;
-      margin: 20px;
-      padding: 15px 25px;
-      background-color: #4CAF50;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    a:hover {
-      background-color: #45a049;
-    }
-  </style>
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/styles.css">
 </head>
 <body>
 <div class="container">
   <h1>Welcome to Project Management System</h1>
-  <a href="Views/login.jsp">Login</a>
-  <a href="Views/register.jsp">Register</a>
+  <a href="<%= request.getContextPath() %>/login" class="btn">Login</a>
+  <a href="<%= request.getContextPath() %>/register" class="btn">Register</a>
 </div>
 </body>
 </html>

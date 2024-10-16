@@ -8,38 +8,32 @@ import java.util.Properties;
 
 public class EmailUtility {
 
-    public static void sendEmail(String recipient, String subject, String content) throws MessagingException {
-        final String username = "hiennnhe187362@fpt.edu.vn"; // Địa chỉ email của bạn
-        final String appPassword = "mlsdzpniwqjhuocm"; // Mật khẩu ứng dụng
+    public static void sendEmail(String toEmail, String subject, String content) throws Exception {        String host = "smtp.gmail.com";
+        String port = "587";
 
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
+        final String fromEmail = "hiennnhe187362@fpt.edu.vn"; // Thay bằng email của bạn
+        final String password = "mlsdzpniwqjhuocm"; // Thay bằng mật khẩu email của bạn
 
-        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+        Properties props = new Properties();
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", port);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, appPassword);
+                return new PasswordAuthentication(fromEmail, password);
             }
         });
 
-        Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("hiennnhe187362@fpt.edu.vn")); // Địa chỉ email của bạn
-        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
-        message.setSubject(subject);
-        message.setContent(content, "text/html");
+        Message msg = new MimeMessage(session);
+        msg.setFrom(new InternetAddress(fromEmail));
+        InternetAddress[] toAddresses = { new InternetAddress(toEmail) };
+        msg.setRecipients(Message.RecipientType.TO, toAddresses);
+        msg.setSubject(subject);
+        msg.setSentDate(new java.util.Date());
+        msg.setText(content);
 
-        Transport.send(message);
-    }
-
-    //main method to test
-    public static void main(String[] args) {
-        try {
-            sendEmail("hiennnhe187362@fpt.edu.vn", "Test email", "This is a test email");
-            System.out.println("Email sent successfully");
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
+        Transport.send(msg);
     }
 }
