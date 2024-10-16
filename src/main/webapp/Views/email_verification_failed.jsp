@@ -2,12 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Project Management System</title>
+  <title>Email Verification Failed</title>
   <style>
-    /* CSS cơ bản cho giao diện */
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
+      background-color: #ffe6e6;
       text-align: center;
       padding-top: 100px;
     }
@@ -21,23 +20,23 @@
     }
     a {
       display: inline-block;
-      margin: 20px;
-      padding: 15px 25px;
-      background-color: #4CAF50;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #f44336;
       color: white;
       text-decoration: none;
       border-radius: 5px;
     }
     a:hover {
-      background-color: #45a049;
+      background-color: #da190b;
     }
   </style>
 </head>
 <body>
 <div class="container">
-  <h1>Welcome to Project Management System</h1>
-  <a href="Views/login.jsp">Login</a>
-  <a href="Views/register.jsp">Register</a>
+  <h2>Email Verification Failed!</h2>
+  <p>The verification link is invalid or has expired.</p>
+  <a href="register.jsp">Register Again</a>
 </div>
 </body>
 </html>
